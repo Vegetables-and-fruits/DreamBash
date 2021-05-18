@@ -1,4 +1,4 @@
 package com.example.dreambash.model;
 
-public class Fruit {
+public class FruitRecipes {
 }
