@@ -22,7 +22,7 @@ public class FruitRecipesService {
     }
 
     public List<String> getRecipeNeedsOven() {
-        List<FruitRecipes> receipNeedsOven = recipesRepository.findFruitRecipiesByNeedsOven(true);
+        List<FruitRecipes> receipNeedsOven = recipesRepository.findFruitRecipesByNeedsOven(true);
 
         return receipNeedsOven.stream()
                 .map(fruitRecipes -> fruitRecipes.getName())
