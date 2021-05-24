@@ -25,34 +25,52 @@ class FruitRecipesServiceTest {
 
     FruitRecipesService fruitRecipesService;
 
-        @Mock
-        FruitRecipesRepository mockRepository;
+    @Mock
+    FruitRecipesRepository mockRepository;
 
-        @BeforeEach
-        void setUp() {
-            fruitRecipesService = new FruitRecipesService(mockRepository);
-        }
+    @BeforeEach
+    void setUp() {
+        fruitRecipesService = new FruitRecipesService(mockRepository);
+    }
 
-        @Test
-        void getFruitRecipeTest() {
-            FruitRecipes recipe1 = new FruitRecipes();
-            recipe1.setId("1");
-            recipe1.setName("Apple Pie");
-            recipe1.setDescription("A very delicious pie");
-            recipe1.setServings(3);
+    @Test
+    void getFruitRecipeTest() {
+        FruitRecipes recipe1 = new FruitRecipes();
+        recipe1.setId("1");
+        recipe1.setName("Apple Pie");
+        recipe1.setDescription("A very delicious pie");
+        recipe1.setServings(3);
 
-            when(mockRepository.findAll())
-                    .thenReturn(Arrays.asList(recipe1));
+        when(mockRepository.findAll())
+                .thenReturn(Arrays.asList(recipe1));
 
-            List<FruitRecipes> actual = fruitRecipesService.getFruitRecipe();
+        List<FruitRecipes> actual = fruitRecipesService.getFruitRecipe();
 
-            assertEquals(recipe1.getName(),actual.get(0).getName());
-            assertEquals("Apple Pie",actual.get(0).getName());
-            assertNotEquals("Not right",actual.get(0).getName());
+        assertEquals(recipe1.getName(), actual.get(0).getName());
+        assertEquals("Apple Pie", actual.get(0).getName());
+        assertNotEquals("Not right", actual.get(0).getName());
 
-            verify(mockRepository, times(1)).findAll();
-        }
+        verify(mockRepository, times(1)).findAll();
+    }
 
+    @Test
+    void saveNewFruitRecipeTest() {
+        FruitRecipes recipe1 = new FruitRecipes();
+        recipe1.setId("1");
+        recipe1.setName("Apple Pie");
+        recipe1.setDescription("A very delicious pie");
+        recipe1.setServings(3);
+        when(mockRepository.save(recipe1))
+                .thenReturn(recipe1);
+
+        FruitRecipes actual = fruitRecipesService.saveNewFruitRecipe(recipe1);
+
+        assertEquals(actual, recipe1);
+        assertEquals(recipe1.getName(), actual.getName());
+
+        verify(mockRepository, times(1)).save(any());
 
     }
+
+}
 
