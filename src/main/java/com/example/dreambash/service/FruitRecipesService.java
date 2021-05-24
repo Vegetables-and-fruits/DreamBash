@@ -17,8 +17,8 @@ public class FruitRecipesService {
         return recipesRepository.findAll();
     }
 
-    public void saveNewFruitRecipe(FruitRecipes fruitRecipes) {
-        recipesRepository.save(fruitRecipes);
+    public FruitRecipes saveNewFruitRecipe(FruitRecipes fruitRecipes) {
+        return recipesRepository.save(fruitRecipes);
     }
 
     public List<String> getRecipeNeedsOven() {
