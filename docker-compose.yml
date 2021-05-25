@@ -1,14 +1,21 @@
-version: "3.7"
+version: "2"
 services:
   mongo_db:
     image: "mongo:4.4.5"
     ports:
-      - 27017:27017
+       - 27017:27017
     restart: always
+    volumes:
+      - /data/db
+
   api_service:
+    build: .
     image: dreambash/recipeapp:1.1
     restart: always
     ports:
-      - 9090:8080
+      - "9090:8080"
+    volumes:
+      - /var/lib/docker/volumes/d0a486f0866ca78cd3d30028d720a47016effb523c5479ca22ff296739bb5c94/_data
+
     depends_on:
       - mongo_db
