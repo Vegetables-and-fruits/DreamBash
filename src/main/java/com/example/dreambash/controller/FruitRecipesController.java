@@ -1,10 +1,8 @@
 package com.example.dreambash.controller;
 
 import com.example.dreambash.model.FruitRecipes;
-import com.example.dreambash.repository.FruitRecipesRepository;
 import com.example.dreambash.service.FruitRecipesService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
