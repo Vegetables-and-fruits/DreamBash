@@ -16,3 +16,13 @@ public class FruitRecipes {
     boolean needsOven;
 
 }
+/**
+ * 
+ db.recipes.insertOne({
+ "name":"",
+ "description":"",
+ "servings":0,
+ "hasRecipes":true/false,
+ "needsOven":true/fals
+ })
+ */
