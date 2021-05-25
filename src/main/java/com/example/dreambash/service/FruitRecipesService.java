@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -17,8 +18,8 @@ public class FruitRecipesService {
         return recipesRepository.findAll();
     }
 
-    public void saveNewFruitRecipe(FruitRecipes fruitRecipes) {
-        recipesRepository.save(fruitRecipes);
+    public FruitRecipes saveNewFruitRecipe(FruitRecipes fruitRecipes) {
+        return recipesRepository.save(fruitRecipes);
     }
 
     public List<String> getRecipeNeedsOven() {
@@ -27,5 +28,14 @@ public class FruitRecipesService {
         return receipNeedsOven.stream()
                 .map(fruitRecipes -> fruitRecipes.getName())
                 .collect(Collectors.toList());
+
+    }
+    public void deleteFruitRecipe(String fruitRecipesId){
+        recipesRepository.deleteById(fruitRecipesId);
+    }
+
+    public Optional<FruitRecipes> findById(String id) {
+
+        return recipesRepository.findById(id);
     }
 }
