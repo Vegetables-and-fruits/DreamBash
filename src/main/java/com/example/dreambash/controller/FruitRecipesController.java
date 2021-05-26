@@ -40,16 +40,10 @@ public class FruitRecipesController {
                                                   @RequestParam(required = false) Boolean hasRecipes,
                                                   @RequestParam(required = false) Boolean needsOven)
     {
-        var updateItem = service.findById(id).get();
+        FruitRecipes fruitRecipes = service.updateFruitRecipe(id, name, description, servings, hasRecipes, needsOven);
+        if (fruitRecipes == null)
+            return "Could not find recipe with id " +id;
 
-        if (name!=null) updateItem.setName(name);
-        if (description!=null) updateItem.setDescription(description);
-        if (servings!=null) updateItem.setServings(servings);
-        if (hasRecipes!=null) updateItem.setHasRecipes(hasRecipes);
-        if (needsOven!=null) updateItem.setNeedsOven(needsOven);
-
-        service.saveNewFruitRecipe(updateItem);
-
-        return "Fruit recipes updated";
+        return "Recipe with id " + id + " updated";
     }
 }
