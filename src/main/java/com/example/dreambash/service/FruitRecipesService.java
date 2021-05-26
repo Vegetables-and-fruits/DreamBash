@@ -30,6 +30,14 @@ public class FruitRecipesService {
                 .collect(Collectors.toList());
 
     }
+    public List<String> getRecipeByName() {
+        List<FruitRecipes> recipeByName = recipesRepository.findFruitRecipesByName("name");
+
+        return recipeByName.stream()
+                .map(fruitRecipes -> fruitRecipes.getName())
+                .collect(Collectors.toList());
+
+    }
     public void deleteFruitRecipe(String fruitRecipesId){
         recipesRepository.deleteById(fruitRecipesId);
     }
