@@ -17,12 +17,11 @@ public class FruitRecipes {
 
 }
 /**
- * 
- db.recipes.insertOne({
- "name":"",
- "description":"",
- "servings":0,
- "hasRecipes":true/false,
- "needsOven":true/fals
- })
+ * db.recipes.insertOne({
+ * "name":"",
+ * "description":"",
+ * "servings":0,
+ * "hasRecipes":true/false,
+ * "needsOven":true/fals
+ * })
  */
