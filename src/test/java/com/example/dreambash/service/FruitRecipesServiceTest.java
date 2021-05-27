@@ -29,7 +29,7 @@ class FruitRecipesServiceTest {
     }
 
 20_create_unit_tests
-    @Test //Sana
+    @Test 
     void getRecipeNeedsOven() {
         FruitRecipes budapest = new FruitRecipes("id1", "Budapestrulle",
                 "description", 8, false, true);
@@ -49,7 +49,7 @@ class FruitRecipesServiceTest {
 
     }
 
-    @Test //Sana
+    @Test 
     void deleteFruitRecipe() {
         doNothing().when(mockRepository).deleteById(anyString());
 
@@ -57,9 +57,9 @@ class FruitRecipesServiceTest {
 
         verify(mockRepository, times(1)).deleteById("id3");
     }
-}
 
-    @Test //Iryna
+
+    @Test 
     void getFruitRecipeTest() {
         FruitRecipes recipe1 = new FruitRecipes();
         recipe1.setId("1");
@@ -79,7 +79,7 @@ class FruitRecipesServiceTest {
         verify(mockRepository, times(1)).findAll();
     }
 
-    @Test //Iryna
+    @Test 
     void saveNewFruitRecipeTest() {
         FruitRecipes recipe1 = new FruitRecipes();
         recipe1.setId("1");
