@@ -10,6 +10,6 @@ import java.util.List;
 public interface FruitRecipesRepository extends MongoRepository<FruitRecipes, String> {
 
     List<FruitRecipes> findFruitRecipesByNeedsOven(boolean needsOven);
+
     List<FruitRecipes> findFruitRecipesByName(String name);
-    //Optional<FruitRecipes> findById(String id);
 }

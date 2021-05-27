@@ -27,26 +27,29 @@ public class FruitRecipesController {
     public List<String> getRecipeThatNeedsOven() {
         return service.getRecipeNeedsOven();
     }
+
     @GetMapping("/recipes/byName")
     public List<String> getRecipeByTheName() {
         return service.getRecipeByName();
     }
+
     @DeleteMapping("/recipes/delete")
-    public String deleteFruitRecipe(@RequestParam String id){
+    public String deleteFruitRecipe(@RequestParam String id) {
         service.deleteFruitRecipe(id);
         return "Deleted FruitRecipe " + id;
     }
+
     @PatchMapping(path = "/update")
-    public @ResponseBody String updateFruitRecipe(@RequestParam String id,
-                                                  @RequestParam(required = false) String name,
-                                                  @RequestParam(required = false) String description,
-                                                  @RequestParam(required = false) Integer servings,
-                                                  @RequestParam(required = false) Boolean hasRecipes,
-                                                  @RequestParam(required = false) Boolean needsOven)
-    {
+    public @ResponseBody
+    String updateFruitRecipe(@RequestParam String id,
+                             @RequestParam(required = false) String name,
+                             @RequestParam(required = false) String description,
+                             @RequestParam(required = false) Integer servings,
+                             @RequestParam(required = false) Boolean hasRecipes,
+                             @RequestParam(required = false) Boolean needsOven) {
         FruitRecipes fruitRecipes = service.updateFruitRecipe(id, name, description, servings, hasRecipes, needsOven);
         if (fruitRecipes == null)
-            return "Could not find recipe with id " +id;
+            return "Could not find recipe with id " + id;
 
         return "Recipe with id " + id + " updated";
     }
