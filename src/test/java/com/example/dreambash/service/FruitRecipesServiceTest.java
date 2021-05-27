@@ -40,6 +40,9 @@ class FruitRecipesServiceTest {
         FruitRecipes budapest = new FruitRecipes("id1", "Budapestrulle",
                 "description", 8, false, true);
 
+        FruitRecipes mandelkaka = new FruitRecipes("id1", "Mandelkaka",
+                "description", 10, false, true);
+
         FruitRecipes fruktsallad = new FruitRecipes("id2", "Fruktsallad",
                 "description", 12, false, false);
 
