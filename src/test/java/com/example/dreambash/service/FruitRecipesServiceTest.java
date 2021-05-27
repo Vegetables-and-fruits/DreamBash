@@ -28,7 +28,7 @@ class FruitRecipesServiceTest {
         fruitRecipesService = new FruitRecipesService(mockRepository);
     }
 
-20_create_unit_tests
+
     @Test 
     void getRecipeNeedsOven() {
         FruitRecipes budapest = new FruitRecipes("id1", "Budapestrulle",
