@@ -1,10 +1,10 @@
-name: CI and CD
+name: Dream Bash
 
 on:
-  workflow_dispatch:
   push:
+  pull_request:
     branches:
-      - master
+      - develop
 
 jobs:
   build-and-push:
@@ -34,4 +34,10 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
+          tags: dreambash/recipeapp:${{ github.run_number }}
+          
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app.jar
+          path: target/*.jar
