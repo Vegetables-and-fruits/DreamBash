@@ -104,7 +104,7 @@ class FruitRecipesServiceTest {
     }
 
     @Test
-    public void ifUpdatingWithWrongId_returnsNull() {
+    void ifUpdatingWithWrongId_returnsNull() {
         FruitRecipesService fruitRecipesServiceNoMockRepository = new FruitRecipesService(fruitRecipesRepository);
         fruitRecipesRepository.save(new FruitRecipes("1", "Recipe 1", "Description 1",
                 6, true, true));
@@ -116,7 +116,7 @@ class FruitRecipesServiceTest {
     }
 
     @Test
-    public void ifUpdatingWithWrongCorrectId_returnsUpdatedFruitRecipes() {
+    void ifUpdatingWithWrongCorrectId_returnsUpdatedFruitRecipes() {
         FruitRecipesService fruitRecipesServiceNoMockRepository = new FruitRecipesService(fruitRecipesRepository);
         fruitRecipesRepository.save(new FruitRecipes("1", "Recipe 1", "Description 1", 6, true, true));
         FruitRecipes fruitRecipes = fruitRecipesServiceNoMockRepository.updateFruitRecipe("1", "Bra namn", null, 4, null, false);
