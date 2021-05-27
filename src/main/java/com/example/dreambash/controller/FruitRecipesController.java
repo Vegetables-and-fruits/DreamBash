@@ -27,6 +27,10 @@ public class FruitRecipesController {
     public List<String> getRecipeThatNeedsOven() {
         return service.getRecipeNeedsOven();
     }
+    @GetMapping("/recipes/byName")
+    public List<String> getRecipeByTheName() {
+        return service.getRecipeByName();
+    }
     @DeleteMapping("/recipes/delete")
     public String deleteFruitRecipe(@RequestParam String id){
         service.deleteFruitRecipe(id);
