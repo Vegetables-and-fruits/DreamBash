@@ -2,8 +2,6 @@ package com.example.dreambash.service;
 
 import com.example.dreambash.model.FruitRecipes;
 import com.example.dreambash.repository.FruitRecipesRepository;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,17 +10,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+@DataMongoTest
 class FruitRecipesServiceTest {
 
     FruitRecipesService fruitRecipesService;
+
+    @Autowired
+    FruitRecipesRepository fruitRecipesRepository;
 
     @Mock
     FruitRecipesRepository mockRepository;
@@ -33,7 +35,7 @@ class FruitRecipesServiceTest {
     }
 
 
-    @Test 
+    @Test
     void getRecipeNeedsOven() {
         FruitRecipes budapest = new FruitRecipes("id1", "Budapestrulle",
                 "description", 8, false, true);
@@ -53,7 +55,7 @@ class FruitRecipesServiceTest {
 
     }
 
-    @Test 
+    @Test
     void deleteFruitRecipe() {
         doNothing().when(mockRepository).deleteById(anyString());
 
@@ -62,8 +64,7 @@ class FruitRecipesServiceTest {
         verify(mockRepository, times(1)).deleteById("id3");
     }
 
-
-    @Test 
+    @Test
     void getFruitRecipeTest() {
         FruitRecipes recipe1 = new FruitRecipes();
         recipe1.setId("1");
@@ -83,7 +84,7 @@ class FruitRecipesServiceTest {
         verify(mockRepository, times(1)).findAll();
     }
 
-    @Test 
+    @Test
     void saveNewFruitRecipeTest() {
         FruitRecipes recipe1 = new FruitRecipes();
         recipe1.setId("1");
@@ -105,8 +106,12 @@ class FruitRecipesServiceTest {
     @Test
     public void ifUpdatingWithWrongId_returnsNull() {
         FruitRecipesService fruitRecipesServiceNoMockRepository = new FruitRecipesService(fruitRecipesRepository);
-        fruitRecipesRepository.save(new FruitRecipes("1", "Recipe 1", "Description 1", 6, true, true));
-        FruitRecipes fruitRecipes = fruitRecipesServiceNoMockRepository.updateFruitRecipe("FelId", "Bra namn", null,null,null,null);
+        fruitRecipesRepository.save(new FruitRecipes("1", "Recipe 1", "Description 1",
+                6, true, true));
+
+        FruitRecipes fruitRecipes = fruitRecipesServiceNoMockRepository.updateFruitRecipe("FelId",
+                "Bra namn", null, null, null, null);
+
         assertNull(fruitRecipes);
     }
 
@@ -114,7 +119,7 @@ class FruitRecipesServiceTest {
     public void ifUpdatingWithWrongCorrectId_returnsUpdatedFruitRecipes() {
         FruitRecipesService fruitRecipesServiceNoMockRepository = new FruitRecipesService(fruitRecipesRepository);
         fruitRecipesRepository.save(new FruitRecipes("1", "Recipe 1", "Description 1", 6, true, true));
-        FruitRecipes fruitRecipes = fruitRecipesServiceNoMockRepository.updateFruitRecipe("1", "Bra namn", null,4,null,false);
+        FruitRecipes fruitRecipes = fruitRecipesServiceNoMockRepository.updateFruitRecipe("1", "Bra namn", null, 4, null, false);
         assertNotNull(fruitRecipes);
         assertTrue(fruitRecipes.getId().equals("1"));
         assertTrue(fruitRecipes.getName().equals("Bra namn"));
