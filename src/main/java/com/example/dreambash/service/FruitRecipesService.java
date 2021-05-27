@@ -25,10 +25,10 @@ public class FruitRecipesService {
     }
 
     public List<String> getRecipeNeedsOven() {
-        List<FruitRecipes> receipNeedsOven = recipesRepository.findFruitRecipesByNeedsOven(true);
+        List<FruitRecipes> recipeNeedsOven = recipesRepository.findFruitRecipesByNeedsOven(true);
 
-        return receipNeedsOven.stream()
-                .map(fruitRecipes -> fruitRecipes.getName())
+        return recipeNeedsOven.stream()
+                .map(FruitRecipes::getName)
                 .collect(Collectors.toList());
 
     }
