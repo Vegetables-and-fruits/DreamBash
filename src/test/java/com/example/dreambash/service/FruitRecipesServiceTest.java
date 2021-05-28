@@ -40,9 +40,6 @@ class FruitRecipesServiceTest {
         FruitRecipes budapest = new FruitRecipes("id1", "Budapestrulle",
                 "description", 8, false, true);
 
-        FruitRecipes fruktsallad = new FruitRecipes("id2", "Fruktsallad",
-                "description", 12, false, false);
-
         when(mockRepository.findFruitRecipesByNeedsOven(true))
                 .thenReturn(Collections.singletonList(budapest));
 
@@ -66,18 +63,14 @@ class FruitRecipesServiceTest {
 
     @Test
     void getFruitRecipeTest() {
-        FruitRecipes recipe1 = new FruitRecipes();
-        recipe1.setId("1");
-        recipe1.setName("Apple Pie");
-        recipe1.setDescription("A very delicious pie");
-        recipe1.setServings(3);
+        FruitRecipes recipe = new FruitRecipes("1", "Apple Pie","A very delicious pie", 3, true, true );
 
         when(mockRepository.findAll())
-                .thenReturn(Arrays.asList(recipe1));
+                .thenReturn(Arrays.asList(recipe));
 
         List<FruitRecipes> actual = fruitRecipesService.getFruitRecipe();
 
-        assertEquals(recipe1.getName(), actual.get(0).getName());
+        assertEquals(recipe.getName(), actual.get(0).getName());
         assertEquals("Apple Pie", actual.get(0).getName());
         assertNotEquals("Not right", actual.get(0).getName());
 
@@ -86,18 +79,15 @@ class FruitRecipesServiceTest {
 
     @Test
     void saveNewFruitRecipeTest() {
-        FruitRecipes recipe1 = new FruitRecipes();
-        recipe1.setId("1");
-        recipe1.setName("Apple Pie");
-        recipe1.setDescription("A very delicious pie");
-        recipe1.setServings(3);
-        when(mockRepository.save(recipe1))
-                .thenReturn(recipe1);
+        FruitRecipes recipe = new FruitRecipes("1", "Apple Pie","A very delicious pie", 3, true, true );
 
-        FruitRecipes actual = fruitRecipesService.saveNewFruitRecipe(recipe1);
+        when(mockRepository.save(recipe))
+                .thenReturn(recipe);
 
-        assertEquals(actual, recipe1);
-        assertEquals(recipe1.getName(), actual.getName());
+        FruitRecipes actual = fruitRecipesService.saveNewFruitRecipe(recipe);
+
+        assertEquals(actual, recipe);
+        assertEquals(recipe.getName(), actual.getName());
 
         verify(mockRepository, times(1)).save(any());
 
@@ -121,10 +111,10 @@ class FruitRecipesServiceTest {
         fruitRecipesRepository.save(new FruitRecipes("1", "Recipe 1", "Description 1", 6, true, true));
         FruitRecipes fruitRecipes = fruitRecipesServiceNoMockRepository.updateFruitRecipe("1", "Bra namn", null, 4, null, false);
         assertNotNull(fruitRecipes);
-        assertTrue(fruitRecipes.getId().equals("1"));
-        assertTrue(fruitRecipes.getName().equals("Bra namn"));
-        assertTrue(fruitRecipes.getDescription().equals("Description 1"));
-        assertTrue(fruitRecipes.getServings() == 4);
+        assertEquals(fruitRecipes.getId(), "1");
+        assertEquals(fruitRecipes.getName(), "Bra namn");
+        assertEquals(fruitRecipes.getDescription(), "Description 1");
+        assertEquals(fruitRecipes.getServings(), 4);
         assertTrue(fruitRecipes.isHasRecipes());
         assertFalse(fruitRecipes.isNeedsOven());
     }

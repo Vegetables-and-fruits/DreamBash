@@ -17,29 +17,29 @@ class FruitRecipesRepositoryTest {
 
     @Test
     void findFruitRecipesByNeedsOven() {
-        FruitRecipes fruit = new FruitRecipes();
-        fruit.setId("1");
-        fruit.setName("Apple pie");
-        fruit.setDescription("description");
-        fruit.setServings(1);
-        fruit.setHasRecipes(true);
-        fruit.setNeedsOven(true);
-        fruitRecipesRepository.save(fruit);
-        List<FruitRecipes> fruits = fruitRecipesRepository.findFruitRecipesByNeedsOven(true);
-        assertEquals(fruits.get(0), fruit);
+        FruitRecipes recipe1 = new FruitRecipes();
+        recipe1.setId("1");
+        recipe1.setName("Apple pie");
+        recipe1.setDescription("description");
+        recipe1.setServings(1);
+        recipe1.setHasRecipes(true);
+        recipe1.setNeedsOven(true);
+        fruitRecipesRepository.save(recipe1);
+        List<FruitRecipes> fruitRecipes = fruitRecipesRepository.findFruitRecipesByNeedsOven(true);
+        assertEquals(fruitRecipes.get(0), recipe1);
     }
 
     @Test
     void findFruitRecipesByName() {
-        FruitRecipes fruit = new FruitRecipes();
-        fruit.setId("1");
-        fruit.setName("Apple pie");
-        fruit.setDescription("description");
-        fruit.setServings(1);
-        fruit.setHasRecipes(true);
-        fruit.setNeedsOven(true);
-        fruitRecipesRepository.save(fruit);
-        List<FruitRecipes> fruits = fruitRecipesRepository.findFruitRecipesByName("Apple pie");
-        assertEquals(fruits.get(0), fruit);
+        FruitRecipes recipe2 = new FruitRecipes();
+        recipe2.setId("1");
+        recipe2.setName("Apple pie");
+        recipe2.setDescription("description");
+        recipe2.setServings(1);
+        recipe2.setHasRecipes(true);
+        recipe2.setNeedsOven(true);
+        fruitRecipesRepository.save(recipe2);
+        List<FruitRecipes> fruitRecipes = fruitRecipesRepository.findFruitRecipesByName("Apple pie");
+        assertEquals(fruitRecipes.get(0), recipe2);
     }
 }
